@@ -66,6 +66,7 @@ brew cask install slack
 brew cask install sonos
 brew cask install spotify
 brew cask install bittorrent-sync
+brew cask install licecap
 
 # Install fonts
 brew tap caskroom/fonts
