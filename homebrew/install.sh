@@ -39,13 +39,13 @@ brew install ack
 brew install git
 brew install rename
 brew install tree
+brew install z
+brew install tmux
 
 #Install zsh
 brew install zsh
 sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
 chsh -s /usr/local/bin/zsh
-
-brew install
 
 # Install homebrew-cask for easily installing application binaries
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
