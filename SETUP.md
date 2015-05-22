@@ -82,3 +82,9 @@ script/bootstrap
 
 ## Additions
 
+### Change desktop background
+
+- [Suggestion 1](http://pichost.me/1793017/)
+- [Suggestion 2](http://pichost.me/1978561/)
+- [Suggestion 3](http://howaboutorange.blogspot.co.uk/2012/09/geometric-desktop-wallpapers.html)
+
