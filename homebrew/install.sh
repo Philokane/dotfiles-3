@@ -60,6 +60,7 @@ brew cask install iterm2-nightly
 brew cask install alfred
 brew cask install divvy
 brew cask install vlc
+brew cask install copy
 brew cask install charles
 brew cask install imageoptim
 brew cask install slack
