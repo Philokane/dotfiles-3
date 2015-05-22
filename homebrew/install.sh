@@ -37,6 +37,7 @@ brew tap josegonzalez/homebrew-php
 # Install everything else
 brew install ack
 brew install git
+brew install hub
 brew install rename
 brew install tree
 brew install z
