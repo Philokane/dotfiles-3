@@ -68,6 +68,7 @@ brew cask install sonos
 brew cask install spotify
 brew cask install bittorrent-sync
 brew cask install licecap
+brew cask install java
 
 # Install fonts
 brew tap caskroom/fonts
