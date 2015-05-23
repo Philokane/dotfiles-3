@@ -125,7 +125,7 @@ let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
-colorscheme solarized
+colorscheme $VIM_COLOUR_SCHEME
 
 " CtrlP
 map <leader>t <C-p>
