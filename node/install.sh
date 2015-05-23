@@ -3,3 +3,8 @@ curl -fsSL https://raw.github.com/isaacs/nave/master/nave.sh > /usr/local/bin/na
 
 # Install a global node.js
 nave usemain stable
+
+# Install global deps
+npm install -g jshint
+npm install -g grunt
+npm install -g gulp
