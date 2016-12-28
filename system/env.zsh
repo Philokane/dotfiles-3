@@ -5,7 +5,6 @@ export GREP_COLOR='1;32'
 export MANPAGER="less -X" # Don’t clear the screen after quitting a manual page
 export EDITOR="vim"
 export TERM="screen-256color"
-export VIM_COLOUR_SCHEME="solarized"
 export CLICOLOR=1
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="/usr/local/heroku/bin:$PATH"
