@@ -1,3 +1,10 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'handlebars') == -1
+  
+if exists('g:loaded_mustache_handlebars') && g:loaded_mustache_handlebars
+  finish
+endif
+let g:loaded_mustache_handlebars = 1
+
 let s:cpo_save = &cpo
 set cpo&vim
 
@@ -59,10 +66,18 @@ xnoremap <silent> <buffer> ]] :<C-U>call <SID>sectionmovement('{{','' ,'v',v:cou
 
 " Operator pending mappings
 
-onoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
-onoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
-xnoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
-xnoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
+" Operators are available by default. Set `let g:mustache_operators = 0` in
+" your .vimrc to disable them.
+if ! exists("g:mustache_operators")
+  let g:mustache_operators = 1
+endif
+
+if exists("g:mustache_operators") && g:mustache_operators
+  onoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
+  onoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
+  xnoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
+  xnoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
+endif
 
 function! s:wrap_around()
   " If the cursor is at the end of the tag element, move back
@@ -105,3 +120,5 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 
 " vim: nofoldenable
+
+endif

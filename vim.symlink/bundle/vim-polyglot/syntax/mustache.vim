@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'handlebars') == -1
+  
 " Mustache & Handlebars syntax
 " Language:	Mustache, Handlebars
 " Maintainer:	Juvenn Woo <machese@gmail.com>
@@ -40,18 +42,18 @@ else
 endif
 
 syntax match mustacheError '}}}\?'
-syntax match mustacheInsideError '{{[{#<>=!\/]\?'
+syntax match mustacheInsideError '{{[{$#<>=!\/]\?'
 syntax region mustacheInside start=/{{/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 syntax match mustacheOperators '=\|\.\|/' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax region mustacheSection start='{{[#^/]'lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheSection start='{{[$#^/]'lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside
 syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection
-syntax region mustacheComment start=/{{!/rs=s+2 end=/}}/re=e-2 contains=Todo contained containedin=mustacheInside,@htmlMustacheContainer
-syntax region mustacheBlockComment start=/{{!--/rs=s+2 end=/--}}/re=e-2 contains=Todo
+syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheBlockComment start=/{{!--/rs=s+2 skip=/{{.\{-}}}/ end=/--}}/re=e-2 contains=Todo contained extend containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=mustacheInside
 syntax region mustacheDQString start=/"/ skip=/\\"/ end=/"/ contained containedin=mustacheInside
 
@@ -87,3 +89,5 @@ syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/\(mustach
 
 let b:current_syntax = "mustache"
 delcommand HtmlHiLink
+
+endif

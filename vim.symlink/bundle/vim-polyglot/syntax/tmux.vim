@@ -1,8 +1,23 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'tmux') == -1
+  
 " Vim syntax file
 " Language: tmux(1) configuration file
-" Maintainer: Tiago Cunha <me@tiagocunha.org>
-" Last Change: $Date: 2010-07-27 18:29:07 $
+" Maintainer: Tiago Cunha <tcunha@users.sourceforge.net>
 " License: This file is placed in the public domain.
+"
+" To install this file:
+"
+" - Drop the file in the syntax directory into runtimepath (such as
+"  ~/.vim/syntax/tmux.vim).
+" - Make the filetype recognisable by adding the following to filetype.vim
+"   (~/.vim/filetype.vim):
+"
+"	augroup filetypedetect
+"		au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+"	augroup END
+"
+" - Switch on syntax highlighting by adding "syntax enable" to .vimrc.
+"
 
 if version < 600
 	syntax clear
@@ -16,64 +31,261 @@ syntax case match
 syn keyword tmuxAction	any current none
 syn keyword tmuxBoolean	off on
 
-syn keyword tmuxCmds detach[-client] ls list-sessions neww new-window
-syn keyword tmuxCmds bind[-key] unbind[-key] prev[ious-window] last[-window]
-syn keyword tmuxCmds lsk list-keys set[-option] renamew rename-window selectw
-syn keyword tmuxCmds select-window lsw list-windows attach[-session]
-syn keyword tmuxCmds send-prefix refresh[-client] killw kill-window lsc
-syn keyword tmuxCmds list-clients linkw link-window unlinkw unlink-window
-syn keyword tmuxCmds next[-window] send[-keys] swapw swap-window
-syn keyword tmuxCmds rename[-session] kill-session switchc switch-client
-syn keyword tmuxCmds has[-session] copy-mode pasteb paste-buffer
-syn keyword tmuxCmds new[-session] start[-server] kill-server setw
-syn keyword tmuxCmds set-window-option show[-options] showw show-window-options
-syn keyword tmuxCmds command-prompt setb set-buffer showb show-buffer lsb
-syn keyword tmuxCmds list-buffers deleteb delete-buffer lscm list-commands
-syn keyword tmuxCmds movew move-window respawnw respawn-window
-syn keyword tmuxCmds source[-file] info server-info clock-mode lock[-server]
-syn keyword tmuxCmds saveb save-buffer killp
-syn keyword tmuxCmds kill-pane resizep resize-pane selectp select-pane swapp
-syn keyword tmuxCmds swap-pane splitw split-window choose-session
-syn keyword tmuxCmds choose-window loadb load-buffer copyb copy-buffer suspendc
-syn keyword tmuxCmds suspend-client findw find-window breakp break-pane nextl
-syn keyword tmuxCmds next-layout rotatew rotate-window confirm[-before]
-syn keyword tmuxCmds clearhist clear-history selectl select-layout if[-shell]
-syn keyword tmuxCmds display[-message] setenv set-environment showenv
-syn keyword tmuxCmds show-environment choose-client displayp display-panes
-syn keyword tmuxCmds run[-shell] lockc lock-client locks lock-session lsp
-syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
-syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
+syn keyword tmuxCmds
+	\ attach
+	\ attach-session
+	\ bind
+	\ bind-key
+	\ break-pane
+	\ breakp
+	\ capture-pane
+	\ capturep
+	\ choose-buffer
+	\ choose-client
+	\ choose-session
+	\ choose-tree
+	\ choose-window
+	\ clear-history
+	\ clearhist
+	\ clock-mode
+	\ command-prompt
+	\ confirm
+	\ confirm-before
+	\ copy-mode
+	\ delete-buffer
+	\ deleteb
+	\ detach
+	\ detach-client
+	\ display
+	\ display-message
+	\ display-panes
+	\ displayp
+	\ find-window
+	\ findw
+	\ has
+	\ has-session
+	\ if
+	\ if-shell
+	\ info
+	\ join-pane
+	\ joinp
+	\ kill-pane
+	\ kill-server
+	\ kill-session
+	\ kill-window
+	\ killp
+	\ killw
+	\ last
+	\ last-pane
+	\ last-window
+	\ lastp
+	\ link-window
+	\ linkw
+	\ list-buffers
+	\ list-clients
+	\ list-commands
+	\ list-keys
+	\ list-panes
+	\ list-sessions
+	\ list-windows
+	\ load-buffer
+	\ loadb
+	\ lock
+	\ lock-client
+	\ lock-server
+	\ lock-session
+	\ lockc
+	\ locks
+	\ ls
+	\ lsb
+	\ lsc
+	\ lscm
+	\ lsk
+	\ lsp
+	\ lsw
+	\ move-pane
+	\ move-window
+	\ movep
+	\ movew
+	\ new
+	\ new-session
+	\ new-window
+	\ neww
+	\ next
+	\ next-layout
+	\ next-window
+	\ nextl
+	\ paste-buffer
+	\ pasteb
+	\ path
+	\ pipe-pane
+	\ pipep
+	\ prev
+	\ previous-layout
+	\ previous-window
+	\ prevl
+	\ refresh
+	\ refresh-client
+	\ rename
+	\ rename-session
+	\ rename-window
+	\ renamew
+	\ resize-pane
+	\ resizep
+	\ respawn-pane
+	\ respawn-window
+	\ respawnp
+	\ respawnw
+	\ rotate-window
+	\ rotatew
+	\ run
+	\ run-shell
+	\ save-buffer
+	\ saveb
+	\ select-layout
+	\ select-pane
+	\ select-window
+	\ selectl
+	\ selectp
+	\ selectw
+	\ send
+	\ send-keys
+	\ send-prefix
+	\ server-info
+	\ set
+	\ set-buffer
+	\ set-environment
+	\ set-hook
+	\ set-option
+	\ set-window-option
+	\ setb
+	\ setenv
+	\ setw
+	\ show
+	\ show-buffer
+	\ show-environment
+	\ show-hooks
+	\ show-messages
+	\ show-options
+	\ show-window-options
+	\ showb
+	\ showenv
+	\ showmsgs
+	\ showw
+	\ source
+	\ source-file
+	\ split-window
+	\ splitw
+	\ start
+	\ start-server
+	\ suspend-client
+	\ suspendc
+	\ swap-pane
+	\ swap-window
+	\ swapp
+	\ swapw
+	\ switch-client
+	\ switchc
+	\ unbind
+	\ unbind-key
+	\ unlink-window
+	\ unlinkw
+	\ wait
+	\ wait-for
 
-syn keyword tmuxOptsSet prefix status status-fg status-bg bell-action
-syn keyword tmuxOptsSet default-command history-limit status-left status-right
-syn keyword tmuxOptsSet status-interval set-titles display-time buffer-limit
-syn keyword tmuxOptsSet status-left-length status-right-length
-syn keyword tmuxOptsSet message-[command-]bg lock-after-time default-path
-syn keyword tmuxOptsSet message-[command-]attr status-attr set-remain-on-exit
-syn keyword tmuxOptsSet status-utf8 default-terminal visual-activity repeat-time
-syn keyword tmuxOptsSet visual-bell visual-content status-justify status-keys
-syn keyword tmuxOptsSet terminal-overrides status-left-attr status-left-bg
-syn keyword tmuxOptsSet status-left-fg status-right-attr status-right-bg
-syn keyword tmuxOptsSet status-right-fg update-environment base-index
-syn keyword tmuxOptsSet display-panes-colour display-panes-time default-shell
-syn keyword tmuxOptsSet set-titles-string lock-command lock-server
-syn keyword tmuxOptsSet mouse-select-pane message-limit quiet escape-time
-syn keyword tmuxOptsSet pane-active-border-bg pane-active-border-fg
-syn keyword tmuxOptsSet pane-border-bg pane-border-fg message-[command-]fg
-syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
-syn keyword tmuxOptsSet detach-on-destroy
+syn keyword tmuxOptsSet
+	\ assume-paste-time
+	\ base-index
+	\ bell-action
+	\ bell-on-alert
+	\ buffer-limit
+	\ default-command
+	\ default-shell
+	\ default-terminal
+	\ destroy-unattached
+	\ detach-on-destroy
+	\ display-panes-active-colour
+	\ display-panes-colour
+	\ display-panes-time
+	\ display-time
+	\ escape-time
+	\ exit-unattached
+	\ focus-events
+	\ history-file
+	\ history-limit
+	\ lock-after-time
+	\ lock-command
+	\ message-command-style
+	\ message-limit
+	\ message-style
+	\ mouse
+	\ prefix
+	\ prefix2
+	\ quiet
+	\ renumber-windows
+	\ repeat-time
+	\ set-clipboard
+	\ set-remain-on-exit
+	\ set-titles
+	\ set-titles-string
+	\ status
+	\ status-bg
+	\ status-fg
+	\ status-interval
+	\ status-justify
+	\ status-keys
+	\ status-left
+	\ status-left-length
+	\ status-left-style
+	\ status-position
+	\ status-right
+	\ status-right-length
+	\ status-right-style
+	\ status-style
+	\ terminal-overrides
+	\ update-environment
+	\ visual-activity
+	\ visual-bell
+	\ visual-silence
+	\ word-separators
 
-syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
-syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
-syn keyword tmuxOptsSetw mode-keys clock-mode-colour clock-mode-style
-syn keyword tmuxOptsSetw xterm-keys mode-attr window-status-attr
-syn keyword tmuxOptsSetw window-status-bg window-status-fg automatic-rename
-syn keyword tmuxOptsSetw main-pane-width main-pane-height monitor-content
-syn keyword tmuxOptsSetw window-status-current-attr window-status-current-bg
-syn keyword tmuxOptsSetw window-status-current-fg mode-mouse synchronize-panes
-syn keyword tmuxOptsSetw window-status-format window-status-current-format
-syn keyword tmuxOptsSetw word-separators window-status-alert-attr
-syn keyword tmuxOptsSetw window-status-alert-bg window-status-alert-fg
+syn keyword tmuxOptsSetw
+	\ aggressive-resize
+	\ allow-rename
+	\ alternate-screen
+	\ automatic-rename
+	\ automatic-rename-format
+	\ clock-mode-colour
+	\ clock-mode-style
+	\ force-height
+	\ force-width
+	\ main-pane-height
+	\ main-pane-width
+	\ mode-keys
+	\ mode-style
+	\ monitor-activity
+	\ monitor-silence
+	\ other-pane-height
+	\ other-pane-width
+	\ pane-active-border-style
+	\ pane-base-index
+	\ pane-border-style
+	\ remain-on-exit
+	\ synchronize-panes
+	\ window-active-style
+	\ window-status-activity-style
+	\ window-status-bell-style
+	\ window-status-current-bg
+	\ window-status-current-fg
+	\ window-status-current-format
+	\ window-status-current-style
+	\ window-status-format
+	\ window-status-last-style
+	\ window-status-separator
+	\ window-status-style
+	\ window-style
+	\ wrap-search
+	\ xterm-keys
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX contained
 
@@ -83,7 +295,9 @@ syn match tmuxOptions		/\s-\a\+/		display
 syn match tmuxVariable		/\w\+=/			display
 syn match tmuxVariableExpansion	/\${\=\w\+}\=/		display
 
-syn region tmuxComment	start=/#/ end=/$/ contains=tmuxTodo display oneline
+" Comments can span multiple lines, when the newline is escaped
+" (with a single) backslash at the end.
+syn region tmuxComment  start=/#/ skip=/\\\@<!\\$/ end=/$/ contains=tmuxTodo
 syn region tmuxString	start=/"/ end=/"/ display oneline
 syn region tmuxString	start=/'/ end=/'/ display oneline
 
@@ -102,3 +316,5 @@ hi def link tmuxVariable		Constant
 hi def link tmuxVariableExpansion	Constant
 
 let b:current_syntax = "tmux"
+
+endif

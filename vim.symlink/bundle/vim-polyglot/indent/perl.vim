@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'perl') == -1
+  
 " Vim indent file
 " Language:      Perl 5
 " Maintainer:    vim-perl <vim-perl@googlegroups.com>
@@ -45,11 +47,6 @@ function! GetPerlIndent()
 
     " Indent POD markers to column 0
     if cline =~ '^\s*=\L\@!'
-        return 0
-    endif
-
-    " Don't reindent comments on first column
-    if cline =~ '^#.'
         return 0
     endif
 
@@ -183,3 +180,5 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 
 " vim:ts=8:sts=4:sw=4:expandtab:ft=vim
+
+endif

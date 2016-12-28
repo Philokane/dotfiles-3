@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'haml') == -1
+  
 " Vim indent file
 " Language:	Haml
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -37,10 +39,11 @@ function! GetHamlIndent()
   let line = substitute(line,'^\s\+','','')
   let indent = indent(lnum)
   let cindent = indent(v:lnum)
+  let sw = exists('*shiftwidth') ? shiftwidth() : &sw
   if cline =~# '\v^-\s*%(elsif|else|when)>'
-    let indent = cindent < indent ? cindent : indent - &sw
+    let indent = cindent < indent ? cindent : indent - sw
   endif
-  let increase = indent + &sw
+  let increase = indent + sw
   if indent == indent(lnum)
     let indent = cindent <= indent ? -1 : increase
   endif
@@ -71,3 +74,5 @@ function! GetHamlIndent()
 endfunction
 
 " vim:set sw=2:
+
+endif

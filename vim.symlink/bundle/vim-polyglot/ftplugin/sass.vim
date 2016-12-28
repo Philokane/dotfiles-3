@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'haml') == -1
+  
 " Vim filetype plugin
 " Language:	Sass
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -9,8 +11,9 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-let b:undo_ftplugin = "setl cms< def< inc< inex< ofu< sua<"
+let b:undo_ftplugin = "setl com< cms< def< inc< inex< ofu< sua<"
 
+setlocal comments=://
 setlocal commentstring=//\ %s
 setlocal define=^\\s*\\%(@mixin\\\|=\\)
 setlocal includeexpr=substitute(v:fname,'\\%(.*/\\\|^\\)\\zs','_','')
@@ -20,3 +23,5 @@ setlocal suffixesadd=.sass,.scss,.css
 let &l:include = '^\s*@import\s\+\%(url(\)\=["'']\='
 
 " vim:set sw=2:
+
+endif

@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'git') == -1
+  
 " Vim filetype plugin
 " Language:	git rebase --interactive
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -12,10 +14,11 @@ runtime! ftplugin/git.vim
 let b:did_ftplugin = 1
 
 setlocal comments=:# commentstring=#\ %s formatoptions-=t
+setlocal nomodeline
 if !exists("b:undo_ftplugin")
   let b:undo_ftplugin = ""
 endif
-let b:undo_ftplugin = b:undo_ftplugin."|setl com< cms< fo<"
+let b:undo_ftplugin = b:undo_ftplugin."|setl com< cms< fo< ml<"
 
 function! s:choose(word)
   s/^\(\w\+\>\)\=\(\s*\)\ze\x\{4,40\}\>/\=(strlen(submatch(1)) == 1 ? a:word[0] : a:word) . substitute(submatch(2),'^$',' ','')/e
@@ -41,3 +44,5 @@ endif
 nnoremap <buffer> <expr> K col('.') < 7 && expand('<Lt>cword>') =~ '\X' && getline('.') =~ '^\w\+\s\+\x\+\>' ? 'wK' : 'K'
 
 let b:undo_ftplugin = b:undo_ftplugin . "|nunmap <buffer> K"
+
+endif

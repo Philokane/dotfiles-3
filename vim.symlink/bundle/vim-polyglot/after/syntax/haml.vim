@@ -1,7 +1,14 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'coffee-script') == -1
+  
 " Language:    CoffeeScript
 " Maintainer:  Sven Felix Oberquelle <Svelix.Github@gmail.com>
 " URL:         http://github.com/kchmck/vim-coffee-script
 " License:     WTFPL
+
+
+if exists('b:current_syntax')
+  let s:current_syntax_save = b:current_syntax
+endif
 
 " Inherit coffee from html so coffeeComment isn't redefined and given higher
 " priority than hamlInterpolation.
@@ -11,3 +18,10 @@ syn region  hamlCoffeescriptFilter matchgroup=hamlFilter
 \                                  end="^\%(\z1 \| *$\)\@!"
 \                                  contains=@hamlCoffeeScript,hamlInterpolation
 \                                  keepend
+
+if exists('s:current_syntax_save')
+  let b:current_syntax = s:current_syntax_save
+  unlet s:current_syntax_save
+endif
+
+endif

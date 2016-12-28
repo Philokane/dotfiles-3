@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'ruby') == -1
+  
 " Vim completion script
 " Language:             Ruby
 " Maintainer:           Mark Guzman <segfault@hasno.info>
@@ -196,7 +198,7 @@ function! rubycomplete#Complete(findstart, base)
             if c =~ '\w'
                 continue
             elseif ! c =~ '\.'
-                idx = -1
+                let idx = -1
                 break
             else
                 break
@@ -704,7 +706,9 @@ class VimRubyCompletion
         cv = eval("self.class.constants")
         vartype = get_var_type( receiver )
         dprint "vartype: %s" % vartype
-        if vartype != ''
+
+        invalid_vartype = ['', "gets"]
+        if !invalid_vartype.include?(vartype)
           load_buffer_class( vartype )
 
           begin
@@ -732,7 +736,7 @@ class VimRubyCompletion
             methods.concat m.instance_methods(false)
           }
         end
-        variables += add_rails_columns( "#{vartype}" ) if vartype && vartype.length > 0
+        variables += add_rails_columns( "#{vartype}" ) if vartype && !invalid_vartype.include?(vartype)
 
       when /^\(?\s*[A-Za-z0-9:^@.%\/+*\(\)]+\.\.\.?[A-Za-z0-9:^@.%\/+*\(\)]+\s*\)?\.([^.]*)/
         message = $1
@@ -829,3 +833,5 @@ call s:DefRuby()
 
 
 " vim:tw=78:sw=4:ts=8:et:fdm=marker:ft=vim:norl:
+
+endif

@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'haml') == -1
+  
 " Vim compiler file
 " Compiler:	Sass
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -15,7 +17,7 @@ endif
 let s:cpo_save = &cpo
 set cpo-=C
 
-CompilerSet makeprg=sass\ -c
+CompilerSet makeprg=sass
 
 CompilerSet errorformat=
       \%f:%l:%m\ (Sass::Syntax%trror),
@@ -28,3 +30,5 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 
 " vim:set sw=2 sts=2:
+
+endif

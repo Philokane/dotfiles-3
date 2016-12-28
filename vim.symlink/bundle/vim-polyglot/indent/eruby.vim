@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'ruby') == -1
+  
 " Vim indent file
 " Language:		eRuby
 " Maintainer:		Tim Pope <vimNOSPAM@tpope.org>
@@ -41,7 +43,18 @@ if exists("*GetErubyIndent")
   finish
 endif
 
+" this file uses line continuations
+let s:cpo_sav = &cpo
+set cpo&vim
+
 function! GetErubyIndent(...)
+  " The value of a single shift-width
+  if exists('*shiftwidth')
+    let sw = shiftwidth()
+  else
+    let sw = &sw
+  endif
+
   if a:0 && a:1 == '.'
     let v:lnum = line('.')
   elseif a:0 && a:1 =~ '^\d'
@@ -70,26 +83,31 @@ function! GetErubyIndent(...)
   let line = getline(lnum)
   let cline = getline(v:lnum)
   if cline =~# '^\s*<%[-=]\=\s*\%(}\|end\|else\|\%(ensure\|rescue\|elsif\|when\).\{-\}\)\s*\%([-=]\=%>\|$\)'
-    let ind = ind - &sw
+    let ind = ind - sw
   endif
   if line =~# '\S\s*<%[-=]\=\s*\%(}\|end\).\{-\}\s*\%([-=]\=%>\|$\)'
-    let ind = ind - &sw
+    let ind = ind - sw
   endif
   if line =~# '\%({\|\<do\)\%(\s*|[^|]*|\)\=\s*[-=]\=%>'
-    let ind = ind + &sw
+    let ind = ind + sw
   elseif line =~# '<%[-=]\=\s*\%(module\|class\|def\|if\|for\|while\|until\|else\|elsif\|case\|when\|unless\|begin\|ensure\|rescue\)\>.*%>'
-    let ind = ind + &sw
+    let ind = ind + sw
   endif
   if line =~# '^\s*<%[=#-]\=\s*$' && cline !~# '^\s*end\>'
-    let ind = ind + &sw
+    let ind = ind + sw
   endif
-  if line !~# '^\s*<%' && line =~# '%>\s*$'
-    let ind = ind - &sw
+  if line !~# '^\s*<%' && line =~# '%>\s*$' && line !~# '^\s*end\>'
+    let ind = ind - sw
   endif
   if cline =~# '^\s*[-=]\=%>\s*$'
-    let ind = ind - &sw
+    let ind = ind - sw
   endif
   return ind
 endfunction
 
+let &cpo = s:cpo_sav
+unlet! s:cpo_sav
+
 " vim:set sw=2 sts=2 ts=8 noet:
+
+endif

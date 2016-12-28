@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'haml') == -1
+  
 " Vim indent file
 " Language:	Sass
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -29,12 +31,12 @@ function! GetSassIndent()
   let indent = indent(lnum)
   let cindent = indent(v:lnum)
   if line !~ s:property && line !~ s:extend && cline =~ s:property
-    return indent + &sw
-  "elseif line =~ s:property && cline !~ s:property
-    "return indent - &sw
+    return indent + (exists('*shiftwidth') ? shiftwidth() : &sw)
   else
     return -1
   endif
 endfunction
 
 " vim:set sw=2:
+
+endif

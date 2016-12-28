@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'rust') == -1
+  
 " Vim compiler file
 " Compiler:         Rust Compiler
 " Maintainer:       Chris Morgan <me@chrismorgan.info>
@@ -15,12 +17,13 @@ if exists(":CompilerSet") != 2
 	command -nargs=* CompilerSet setlocal <args>
 endif
 
-if exists("g:rustc_makeprg_no_percent") && g:rustc_makeprg_no_percent == 1
+if exists("g:rustc_makeprg_no_percent") && g:rustc_makeprg_no_percent != 0
 	CompilerSet makeprg=rustc
 else
 	CompilerSet makeprg=rustc\ \%
 endif
 
+" Old errorformat (before nightly 2016/08/10)
 CompilerSet errorformat=
 			\%f:%l:%c:\ %t%*[^:]:\ %m,
 			\%f:%l:%c:\ %*\\d:%*\\d\ %t%*[^:]:\ %m,
@@ -29,5 +32,18 @@ CompilerSet errorformat=
 			\%-G%*[\ ]^%*[~],
 			\%-G%*[\ ]...
 
+" New errorformat (after nightly 2016/08/10)
+CompilerSet errorformat+=
+			\%-G,
+			\%-Gerror:\ aborting\ %.%#,
+			\%-Gerror:\ Could\ not\ compile\ %.%#,
+			\%Eerror:\ %m,
+			\%Eerror[E%n]:\ %m,
+			\%Wwarning:\ %m,
+			\%Inote:\ %m,
+			\%C\ %#-->\ %f:%l:%c
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
+endif

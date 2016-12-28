@@ -1,3 +1,5 @@
+if !exists('g:polyglot_disabled') || index(g:polyglot_disabled, 'haml') == -1
+  
 " Vim filetype plugin
 " Language:	SCSS
 " Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
@@ -8,5 +10,8 @@ if exists("b:did_ftplugin")
 endif
 
 runtime! ftplugin/sass.vim
+setlocal comments=s1:/*,mb:*,ex:*/,://
 
 " vim:set sw=2:
+
+endif
