@@ -57,9 +57,15 @@ set shiftwidth=4
 
 " Turn on line numbers
 set number
+set relativenumber
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 " Highlight tailing whitespace
 set list listchars=tab:\ \ ,trail:·
+" autocmd colorscheme * highlight SpecialKey ctermfg=NONE ctermbg=NONE
 
 " Get rid of the delay when pressing O (for example)
 " http://stackoverflow.com/questions/2158516/vim-delay-before-o-opens-a-new-line
@@ -115,7 +121,13 @@ autocmd BufWinEnter * highlight ColorColumn ctermbg=gray
 set colorcolumn=80
 " }}}
 
+" Projects {{{
+autocmd BufRead,BufNewFile,BufWinEnter $HOME/Projects/* set tabstop=4 shiftwidth=4 autoindent smartindent noexpandtab
+" }}}
+
 " Plugins {{{
+set mouse=a
+
 execute pathogen#infect()
 filetype plugin indent on " required by Pathogen Plugin Manager
 
@@ -123,13 +135,17 @@ filetype plugin indent on " required by Pathogen Plugin Manager
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-let g:solarized_visibility="high"
+let g:solarized_visibility="normal"
 let g:solarized_contrast="high"
 if empty($VIM_COLOUR_SCHEME)
     colorscheme solarized
 else
     colorscheme $VIM_COLOUR_SCHEME
 endif
+
+highlight clear SignColumn
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=lightgrey
 
 " CtrlP
 map <leader>t <C-p>
@@ -149,14 +165,13 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store,*/target/*,*/cache/*,*/ha
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " CtrlP -> directories to ignore when fuzzy finding
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|hash|cache)|(\.(git|svn|grunt|sass-cache|idea))$'
-
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|hash|cache|bower_components|DS_Store)|(\.(git|svn|grunt|sass-cache|idea))$'
 " Ack (uses Ag behind the scenes)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Airline (status line)
 let g:airline_powerline_fonts = 1
-
+" let g:airline_theme = "hybrid"
 " Gist authorisation settings
 let g:github_user = $GITHUB_USER
 let g:github_token = $GITHUB_TOKEN
@@ -178,12 +193,24 @@ highlight clear SignColumn
 
 " Searching the file system
 map <leader>' :NERDTreeToggle<cr>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Tabularize
 map <Leader>e :Tabularize /=<cr>
 map <Leader>c :Tabularize /:<cr>
 map <Leader>es :Tabularize /=\zs<cr>
 map <Leader>cs :Tabularize /:\zs<cr>
+
+" Syntastic
+nnoremap <C-w>e :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Camel Case Motion (for dealing with programming code)
 map <silent> w <Plug>CamelCaseMotion_w
@@ -192,6 +219,25 @@ map <silent> e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+" Go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+"Tern
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'"
+
+"JSX
+let g:jsx_ext_required = 1
+
+"Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " }}}
 
 " Mappings {{{
@@ -237,9 +283,15 @@ map <leader>w[ <C-W>= " equalize all windows
 map <leader>; <C-W>s
 map <leader>` <C-W>v
 
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
 " Tmux style window selection
 map <Leader>ws :ChooseWin<cr>
 " }}}
+
+" Maintain visual selection when indenting
+:vnoremap < <gv
+:vnoremap > >gv
 
 " Commands {{{
 " jump to last cursor
