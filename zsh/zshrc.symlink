@@ -38,4 +38,7 @@ do
   source $file
 done
 
+# source z
+. $ZSH/bin/z.sh
+
 unset config_files
