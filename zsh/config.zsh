@@ -5,7 +5,7 @@ else
 fi
 
 export LSCOLORS=Gxfxcxdxbxegedabagacad
-export LS_COLORS=Gxfxcxdxbxegedabagacad
+# export LS_COLORS=Gxfxcxdxbxegedabagacad
 export CLICOLOR=true
 
 fpath=($ZSH/functions $fpath)
@@ -52,7 +52,7 @@ unsetopt menu_complete # do not autoselect the first completion entry
 # ===== Correction
 setopt correct # spelling correction for commands
 setopt correctall # spelling correction for arguments
-CORRECT_IGNORE='st,gulp'
+CORRECT_IGNORE='st,gulp,test'
 
 # ===== Prompt
 setopt prompt_subst # Enable parameter expansion, command substitution, and arithmetic expansion in the prompt
