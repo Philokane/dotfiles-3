@@ -31,7 +31,7 @@
 
 - Setup ssh keys for github use:
   ```
-  cd ~/.ssh && sshkey # github_rsa
+  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
   ```
 - Start the ssh-agent:
   ```
@@ -39,11 +39,11 @@
   ```
 - Add the ssh key to the agent:
   ```
-  ssh-add -K ~/.ssh/github_rsa # -K for Mac OS X keychain persistence
+  ssh-add -K ~/.ssh/id_rsa # -K for Mac OS X keychain persistence
   ```
 - Get copy of public key:
   ```
-  pbcopy < ~/.ssh/github_rsa.pub # paste into GitHub GUI
+  pbcopy < ~/.ssh/id_rsa.pub # paste into GitHub GUI
   ```
 - Test setup:
   ```
