@@ -48,6 +48,7 @@ brew install httpie
 brew install redis
 brew install jq
 brew install openssl
+brew install node
 
 #Install zsh
 brew install zsh
