@@ -45,6 +45,7 @@
   ```
   pbcopy < ~/.ssh/id_rsa.pub # paste into GitHub GUI
   ```
+- Create new ssh key pairing via github.com: Settings > SSH > New SSH key
 - Test setup:
   ```
   ssh -T git@github.com
@@ -55,7 +56,7 @@
 ```
 cd ~
 git clone git@github.com:phamann/dotfiles.git
-mv -r dotfiles .dotfiles
+mv dotfiles .dotfiles
 ```
 
 ### Run doftiles bootscript
@@ -63,16 +64,15 @@ mv -r dotfiles .dotfiles
 ```
 cd ~/.dotfiles
 script/bootstrap
+scropt/install
 ```
 
 ### Post bootscript setup
 
 - Restart iTerm
-- Re-install [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
-- `cd ~/.dotfiles/vim.symlink/bundle && git clone git://github.com/altercation/vim-colors-solarized.git`
 - Test vim setup
 - Test tmux setup
-- Sync iTerm preferences via Copy
+- Sync iTerm preferences via Dropbox
 
 ### 
 
