@@ -1,52 +1,94 @@
 update
 upgrade
 tap caskroom/cask
+tap caskroom/fonts
+tap caskroom/versions
+tap homebrew/core
+tap homebrew/dupes
+tap josegonzalez/php
 install ack
 install autoconf
-install automake
-install brew-cask
-install cloog018
-install csvprintf
-install dnsmasq
-install faac
-install ffmpeg
+install bash
+install boost
+install c-ares
+install cmake
+install coreutils
+install curl
 install findutils
+install fontconfig
 install freetype
-install gcc48
+install gd
+install gdbm
+install gettext
 install git
-install gmp4
 install gnu-tar
 install graphviz
+install grc
+install grep
+install httpie
 install hub
-install imagemagick
-install isl011
+install hugo
+install jansson
+install jemalloc
 install jpeg
-install lame
+install jq
+install libev
 install libevent
-install libmpc08
+install libidn
 install libpng
+install libtiff
 install libtool
-install lighttpd
-install makedepend
-install memcached
+install libxml2
+install libyaml
+install maven
 install mongodb
-install mpfr2
-install nginx
+install mysql
+install nghttp2
+install node
+install oniguruma
 install openssl
-install ossp-uuid
 install pcre
+install perl
 install pkg-config
-install pngcheck
-install postgresql
+install python
+install python3
+install rbenv
 install readline
-install sbt
-install scons
-install sl
-install texi2html
+install reattach-to-user-namespace
+install redis
+install rename
+install ruby
+install ruby-build
+install spark
+install spdylay
+install sqlite
 install the_silver_searcher
-install todo-txt
-install x264
-install xvid
+install tmux
+install tree
+install varnish
+install vim
+install watch
+install webp
+install wget
 install xz
-install yasm
+install yarn
+install z
+install zsh
+cask install alfred
+cask install bittorrent-sync (!)
+cask install charles
+cask install divvy
+cask install font-sauce-code-powerline (!)
+cask install font-source-code-pro
+cask install google-chrome
+cask install imageoptim
+cask install iterm2-nightly
+cask install java
+cask install licecap
+cask install slack
+cask install sonos
+cask install spotify
+cask install sublime-text-dev
+cask install virtualbox
+cask install vlc
 cleanup
