@@ -76,6 +76,7 @@ brew cask install licecap
 brew cask install java
 brew cask install postman
 brew cask install docker
+brew cask install ngrok
 
 # Install fonts
 brew tap caskroom/fonts
