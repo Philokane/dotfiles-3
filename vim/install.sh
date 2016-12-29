@@ -10,17 +10,17 @@ if test ! $(which voom)
 then
   echo "  Installing Voom for you."
   curl -LSso ~/.dotfiles/bin/voom https://raw.githubusercontent.com/airblade/voom/master/voom
-  chmod 744 ~/.dotfiles/bin/voom
+  chmod 755 ~/.dotfiles/bin/voom
 fi
 
 # Install plugins via voom
-voom
+~/.dotfiles/bin/voom
 
 # Post-install steps
-pushd ~/.vim/bundle/YouCompleteMe
-./install.py --gocode-completer --tern-completer
-popd
+# pushd ~/.vim/bundle/YouCompleteMe
+# ./install.py --gocode-completer --tern-completer
+# popd
 
-pushd ~/.vim/bundle/vimproc.vim
-make
-popd
+# pushd ~/.vim/bundle/vimproc.vim
+# make
+# popd
