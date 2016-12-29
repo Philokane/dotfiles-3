@@ -17,10 +17,11 @@ fi
 ~/.dotfiles/bin/voom
 
 # Post-install steps
-# pushd ~/.vim/bundle/YouCompleteMe
-# ./install.py --gocode-completer --tern-completer
-# popd
+pushd ~/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive
+./install.py --gocode-completer --tern-completer
+popd
 
-# pushd ~/.vim/bundle/vimproc.vim
-# make
-# popd
+pushd ~/.vim/bundle/vimproc.vim
+make
+popd
