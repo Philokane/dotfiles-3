@@ -26,13 +26,29 @@
       208.67.220.220
 ```
 
+
 ### Setup SSH keys for Github
 
-- Go to [Copy.com](http://www.copy.com)
-- Download .ssh folder
-- Unpack folder archive
-- `rm -rf ~/.ssh && mv ~/Downloads/.ssh ~/.ssh`
-- `ssh -T git@github.com`
+- Setup ssh keys for github use:
+  ```
+  cd ~/.ssh && sshkey # github_rsa
+  ```
+- Start the ssh-agent:
+  ```
+  eval "$(ssh-agent -s)"
+  ```
+- Add the ssh key to the agent:
+  ```
+  ssh-add -K ~/.ssh/github_rsa # -K for Mac OS X keychain persistence
+  ```
+- Get copy of public key:
+  ```
+  pbcopy < ~/.ssh/github_rsa.pub # paste into GitHub GUI
+  ```
+- Test setup:
+  ```
+  ssh -T git@github.com
+  ```
 
 ### Clone dotfiles repo via SSH
 
@@ -58,6 +74,8 @@ script/bootstrap
 - Test tmux setup
 - Sync iTerm preferences via Copy
 
+### 
+
 ### Setup Chrome
 
 - Login to [LastPass](https://lastpass.com/)
@@ -66,10 +84,10 @@ script/bootstrap
 - Ensure all settings and extensions are syncing
 - Repeat steps for Chrome Canary
 
-### Install Copy
+### Setup DropBox
 
-- Open Copy add
-- Login using credentials form LastPass
+- Open DropBox app
+- Login using credentials from LastPass
 - Setup sync
 - Symlink Documents, Code, Personal
 
