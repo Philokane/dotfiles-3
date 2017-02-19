@@ -122,7 +122,7 @@ set colorcolumn=80
 " }}}
 
 " Projects {{{
-autocmd BufRead,BufNewFile,BufWinEnter $HOME/Projects/* set tabstop=4 shiftwidth=4 autoindent smartindent noexpandtab
+autocmd BufRead,BufNewFile,BufWinEnter $HOME/Projects/* set autoindent smartindent
 " }}}
 
 " Plugins {{{
@@ -315,8 +315,8 @@ autocmd BufWritePre * call StripTrailingWhitespace()
 " file formats
 autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd Filetype markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 " http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-autocmd FileType sh,cucumber,ruby,yaml,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
-
+autocmd FileType sh,cucumber,ruby,zsh,vim setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 " file colourrschemes
 " autocmd BufEnter *.md set background=light t_ut
 
