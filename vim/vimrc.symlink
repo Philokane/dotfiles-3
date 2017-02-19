@@ -238,6 +238,9 @@ let g:jsx_ext_required = 1
 
 "Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+"Terraform
+let g:terraform_fmt_on_save = 1
 " }}}
 
 " Mappings {{{

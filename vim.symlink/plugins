@@ -9,6 +9,7 @@ ervandew/supertab
 fatih/vim-go
 godlygeek/tabular
 guns/vim-sexp
+hashivim/vim-terraform
 jelera/vim-javascript-syntax
 kien/ctrlp.vim
 kien/rainbow_parentheses.vim
