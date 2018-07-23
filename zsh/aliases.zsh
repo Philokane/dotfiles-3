@@ -1,4 +1,5 @@
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 alias r="source ~/.zshrc"
 alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
 alias tmuxsrc="tmux source-file ~/.tmux.conf"
@@ -42,6 +43,10 @@ alias please=sudo
 # handy things
 alias bunyip='node ~/code/bunyip/cli.js'
 alias spotify="osascript ~/code/SpotifyControl/SpotifyControl.scpt"
+
+function cwhois {
+	whois -h whois.cymru.com. " -v $1"
+}
 
 # List all files colorized in long format
 alias l="ls -l ${colorflag}"
@@ -89,14 +94,14 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Trim new lines and copy to clipboard
-alias c="tr -d '\n' | pbcopy"
+# alias c="tr -d '\n' | pbcopy"
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Shortcuts
 alias g="nocorrect git"
-alias v="vim"
+alias v="nvim"
 
 # File size
 alias fs="stat -f \"%z bytes\""

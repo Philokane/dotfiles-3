@@ -119,6 +119,10 @@ let g:netrw_liststyle=3
 " cutoff appears on longer screens
 autocmd BufWinEnter * highlight ColorColumn ctermbg=gray
 set colorcolumn=80
+
+
+" Auto change working directory when opening file
+" set autochdir
 " }}}
 
 " Projects {{{
@@ -158,7 +162,7 @@ let g:ctrlp_max_height=30
 let g:ctrlp_arg_map = 1
 
 " CtrlP -> files matched are ignored when expanding wildcards
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store,*/target/*,*/cache/*,*/hash/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store,*/target/*,*/cache/*,*/hash/*,node_modules/*,bower_components/*
 
 " CtrlP -> use Ag for searching instead of VimScript
 " (might not work with ctrlp_show_hidden and ctrlp_custom_ignore)
@@ -196,6 +200,9 @@ map <leader>' :NERDTreeToggle<cr>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" NERDTree
+let NERDTreeShowHidden=1
+
 " Tabularize
 map <Leader>e :Tabularize /=<cr>
 map <Leader>c :Tabularize /:<cr>
@@ -229,6 +236,8 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_autosave = 1
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 "Tern
 "enable keyboard shortcuts
@@ -244,6 +253,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 "Terraform
 let g:terraform_fmt_on_save = 1
+
+let g:polyglot_disabled = ['md', 'markdown', 'vcl']
 " }}}
 
 " Mappings {{{

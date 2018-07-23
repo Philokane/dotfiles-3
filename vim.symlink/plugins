@@ -20,15 +20,13 @@ mtth/scratch.vim
 mustache/vim-mustache-handlebars
 mxw/vim-jsx
 othree/yajs.vim
-plasticboy/vim-markdown
 quramy/tsuquyomi
 quramy/vim-js-pretty-template
 rizzatti/dash.vim
 scrooloose/nerdtree
-sheerun/vim-polyglot
 shougo/vimproc.vim
 skammer/vim-css-color
-smerrill/vcl-vim-plugin
+sheerun/vim-polyglot
 ternjs/tern_for_vim
 tpope/vim-commentary
 tpope/vim-dispatch
@@ -41,7 +39,7 @@ tpope/vim-surround
 valloric/YouCompleteMe
 vim-airline/vim-airline
 vim-scripts/JavaScript-Indent
-vim-scripts/html5.vim
 vim-scripts/textutil.vim
 vim-syntastic/syntastic
 zerowidth/vim-copy-as-rtf
+smerrill/vcl-vim-plugin
